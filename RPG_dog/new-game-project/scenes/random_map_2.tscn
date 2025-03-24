@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ep1j6revakxk"]
+
+[ext_resource type="Texture2D" uid="uid://4i5wcqwpnmgg" path="res://assets/terrain-0003.png" id="1_5447w"]
+[ext_resource type="Script" path="res://scripts/tile_map.gd" id="1_cs7hi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gum53"]
+texture = ExtResource("1_5447w")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7p2df"]
+sources/0 = SubResource("TileSetAtlasSource_gum53")
+
+[node name="random_map_2" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.1, 0.1)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_7p2df")
+format = 2
+script = ExtResource("1_cs7hi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TileMap"]
+
+[node name="Button" type="Button" parent="TileMap/CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Randomize"
+
+[connection signal="pressed" from="TileMap/CanvasLayer/Button" to="TileMap" method="_on_button_pressed"]

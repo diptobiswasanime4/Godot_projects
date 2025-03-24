@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://raylqyc6i1uk"]
+
+[ext_resource type="Script" path="res://scripts/inv_ui.gd" id="1_8fljg"]
+[ext_resource type="Texture2D" uid="uid://ba10b2i26obs" path="res://art/inventory-background.png" id="2_jp117"]
+[ext_resource type="PackedScene" uid="uid://bdkqy4tjwl7g2" path="res://scenes/inv_ui_slot.tscn" id="3_vqdih"]
+
+[node name="inv_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1080.0
+offset_bottom = -608.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8fljg")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 43.0
+texture = ExtResource("2_jp117")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="inv_UI_slot6" parent="NinePatchRect" instance=ExtResource("3_vqdih")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 23.0
+offset_right = 66.0
+offset_bottom = 39.0
+
+[node name="inv_UI_slot5" parent="NinePatchRect" instance=ExtResource("3_vqdih")]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 23.0
+offset_right = 44.0
+offset_bottom = 39.0
+
+[node name="inv_UI_slot4" parent="NinePatchRect" instance=ExtResource("3_vqdih")]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 23.0
+offset_right = 22.0
+offset_bottom = 39.0
+
+[node name="inv_UI_slot3" parent="NinePatchRect" instance=ExtResource("3_vqdih")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 4.0
+offset_right = 66.0
+offset_bottom = 20.0
+
+[node name="inv_UI_slot2" parent="NinePatchRect" instance=ExtResource("3_vqdih")]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 20.0
+
+[node name="inv_UI_slot1" parent="NinePatchRect" instance=ExtResource("3_vqdih")]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 22.0
+offset_bottom = 20.0

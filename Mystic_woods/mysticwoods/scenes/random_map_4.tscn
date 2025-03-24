@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://2at2xe7atn4g"]
+
+[ext_resource type="PackedScene" uid="uid://de7vt8cvpqixf" path="res://scenes/dog.tscn" id="1_ln1h4"]
+[ext_resource type="Texture2D" uid="uid://mlglevascox4" path="res://assets/terrain-0004.png" id="2_krimh"]
+[ext_resource type="Script" path="res://scripts/layer_trees.gd" id="3_0s1bb"]
+[ext_resource type="Texture2D" uid="uid://cdys2xdvg6ll" path="res://assets/survivalgame-appletree.png" id="4_rfj6k"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vhexg"]
+texture = ExtResource("2_krimh")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8e344"]
+sources/0 = SubResource("TileSetAtlasSource_vhexg")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ejihx"]
+texture = ExtResource("4_rfj6k")
+texture_region_size = Vector2i(8, 8)
+0:0/size_in_atlas = Vector2i(5, 5)
+0:0/0 = 0
+5:0/size_in_atlas = Vector2i(5, 5)
+5:0/0 = 0
+10:0/size_in_atlas = Vector2i(5, 5)
+10:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dchif"]
+sources/0 = SubResource("TileSetAtlasSource_ejihx")
+
+[node name="random_map_4" type="Node2D"]
+
+[node name="dog" parent="." instance=ExtResource("1_ln1h4")]
+z_index = 1
+
+[node name="Camera2D" type="Camera2D" parent="dog"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_8e344")
+
+[node name="TreeLayer" type="TileMapLayer" parent="TileMapLayer"]
+tile_set = SubResource("TileSet_dchif")
+script = ExtResource("3_0s1bb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TileMapLayer/TreeLayer"]
+
+[node name="Button" type="Button" parent="TileMapLayer/TreeLayer/CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Randomize"
+
+[connection signal="pressed" from="TileMapLayer/TreeLayer/CanvasLayer/Button" to="TileMapLayer" method="_on_button_pressed"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2784oo01kmgm"]
+
+[ext_resource type="Script" path="res://scripts/tile_map_layer.gd" id="1_le2d1"]
+
+[node name="random_map" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+script = ExtResource("1_le2d1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TileMapLayer"]
+
+[node name="Button" type="Button" parent="TileMapLayer/CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Randomize"
+
+[connection signal="pressed" from="TileMapLayer/CanvasLayer/Button" to="TileMapLayer" method="_on_button_pressed"]

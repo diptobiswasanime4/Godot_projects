@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccdfcf8kgm1l"]
+
+[ext_resource type="Texture2D" uid="uid://wgws6hif873s" path="res://assets/terrain-0001.png" id="1_m4vyj"]
+[ext_resource type="PackedScene" uid="uid://de7vt8cvpqixf" path="res://scenes/dog.tscn" id="1_teyio"]
+[ext_resource type="Script" path="res://scripts/tile_map_3.gd" id="2_k1le3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x61pw"]
+texture = ExtResource("1_m4vyj")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xn0sn"]
+sources/0 = SubResource("TileSetAtlasSource_x61pw")
+
+[node name="random_map_3" type="Node2D"]
+
+[node name="dog" parent="." instance=ExtResource("1_teyio")]
+z_index = 1
+
+[node name="Camera2D" type="Camera2D" parent="dog"]
+zoom = Vector2(4, 4)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_xn0sn")
+format = 2
+script = ExtResource("2_k1le3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TileMap"]
+
+[node name="Button" type="Button" parent="TileMap/CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Randomize"
+
+[connection signal="pressed" from="TileMap/CanvasLayer/Button" to="TileMap" method="_on_button_pressed"]

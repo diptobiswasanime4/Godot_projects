@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cscorbpjr1a1u"]
+
+[ext_resource type="Script" path="res://scripts/random_tilemap.gd" id="1_xb8u5"]
+
+[node name="random_map" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+script = ExtResource("1_xb8u5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TileMap"]
+
+[node name="Button" type="Button" parent="TileMap/CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Random"
