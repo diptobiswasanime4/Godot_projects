@@ -455,6 +455,6 @@ text = "Randomize"
 [node name="wolf" parent="." instance=ExtResource("3_riacv")]
 
 [node name="Camera2D" type="Camera2D" parent="wolf"]
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 
 [connection signal="pressed" from="IsoTileMapLayer/CanvasLayer/Button" to="IsoTileMapLayer" method="_on_button_pressed"]

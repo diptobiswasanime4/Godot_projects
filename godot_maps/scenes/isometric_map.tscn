@@ -238,4 +238,4 @@ tile_set = SubResource("TileSet_mye0m")
 [node name="wolf" parent="." instance=ExtResource("1_e4usb")]
 
 [node name="Camera2D" type="Camera2D" parent="wolf"]
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
