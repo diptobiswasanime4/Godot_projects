@@ -13,6 +13,7 @@ texture = ExtResource("2_l2dxv")
 centered = false
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 
