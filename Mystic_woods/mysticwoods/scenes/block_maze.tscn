@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cemomhbphnoo6"]
+
+[ext_resource type="Script" path="res://scripts/block_maze.gd" id="1_qkssv"]
+[ext_resource type="Texture2D" uid="uid://bpqxv3bo8lj8p" path="res://assets/wall-path-0001.png" id="2_fdgid"]
+[ext_resource type="PackedScene" uid="uid://mvx032dyvemq" path="res://scenes/player.tscn" id="3_rk6qu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6kju2"]
+texture = ExtResource("2_fdgid")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_cmwk3"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_6kju2")
+
+[node name="block_maze" type="Node2D"]
+script = ExtResource("1_qkssv")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_cmwk3")
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Randomize"
+
+[node name="player" parent="." instance=ExtResource("3_rk6qu")]
+position = Vector2(32, 32)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

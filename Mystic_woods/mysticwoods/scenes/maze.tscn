@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://5y2hx365r0pc"]
+
+[ext_resource type="Script" path="res://scripts/maze.gd" id="1_xthg4"]
+[ext_resource type="PackedScene" uid="uid://de7vt8cvpqixf" path="res://scenes/dog.tscn" id="2_ht8bq"]
+
+[node name="maze" type="Node2D"]
+script = ExtResource("1_xthg4")
+
+[node name="dog" parent="." instance=ExtResource("2_ht8bq")]
+position = Vector2(49, 47)
+
+[node name="Camera2D" type="Camera2D" parent="dog"]
+zoom = Vector2(4, 4)
