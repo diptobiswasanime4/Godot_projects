@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ch6nak1of0pqu"]
 
-[ext_resource type="Script" path="res://scenes/animated_line_maze.gd" id="1_0yd6r"]
+[ext_resource type="Script" path="res://scripts/animated_line_maze.gd" id="1_0yd6r"]
 
 [node name="animated_line_maze" type="Node2D"]
 script = ExtResource("1_0yd6r")
