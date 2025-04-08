@@ -1,10 +1,11 @@
 extends Node2D
 
-const WIDTH = 40
-const HEIGHT = 25
-const MIN_ROOM_SIZE = 5
-const MAX_ROOM_SIZE = 8
-const MAX_ROOMS = 3
+const WIDTH = 80
+const HEIGHT = 80
+const MIN_ROOM_SIZE = 6
+const MAX_ROOM_SIZE = 10
+const MAX_ROOMS = 8
+const CORRIDOR_WIDTH = 2
 
 const TILE_FLOOR = Vector2i(1, 1)
 const TILE_CAVE = Vector2i(3, 0)
@@ -49,7 +50,6 @@ func spawn_player_in_first_room():
 	player.position = tilemap.map_to_local(Vector2i(center)).floor()
 
 func initialize_grid():
-	grid = []
 	for x in range(WIDTH):
 		var row = []
 		for y in range(HEIGHT):
@@ -67,8 +67,8 @@ func generate_dungeon():
 func generate_room():
 	var room_width = randi() % (MAX_ROOM_SIZE - MIN_ROOM_SIZE + 1) + MIN_ROOM_SIZE
 	var room_height = room_width
-	var x = randi() % (WIDTH - room_width)
-	var y = randi() % (HEIGHT - room_height)
+	var x = randi() % (WIDTH - room_width - 1) + 1
+	var y = randi() % (HEIGHT - room_height - 1) + 1
 	return Rect2(x, y, room_width, room_height)
 	
 func place_room(room):
@@ -82,7 +82,7 @@ func place_room(room):
 			grid[x][y] = 0
 	return true
 	
-func connect_rooms(room1, room2, corridor_width=2):
+func connect_rooms(room1, room2):
 	var start = Vector2(
 		int(room1.position.x + room1.size.x / 2),
 		int(room1.position.y + room1.size.y / 2)
@@ -99,9 +99,9 @@ func connect_rooms(room1, room2, corridor_width=2):
 			current.x += 1
 		else:
 			current.x -= 1
-		for i in range(-int(corridor_width / 2), int(corridor_width / 2) + 1):
-			for j in range(-int(corridor_width / 2), int(corridor_width / 2) + 1):
-				if current.y + j >= 0 and current.y + j < HEIGHT and current.x + i >= 0 and current.x + i < WIDTH:
+		for i in range(-int(CORRIDOR_WIDTH / 2), int(CORRIDOR_WIDTH / 2) + 1):
+			for j in range(-int(CORRIDOR_WIDTH / 2), int(CORRIDOR_WIDTH / 2) + 1):
+				if is_valid_pos(current.x + i, current.y + j):
 					grid[current.x + i][current.y + j] = 0
 	
 	while current.y != end.y:
@@ -109,9 +109,9 @@ func connect_rooms(room1, room2, corridor_width=2):
 			current.y += 1
 		else:
 			current.y -= 1
-		for i in range(-int(corridor_width / 2), int(corridor_width / 2) + 1):
-			for j in range(-int(corridor_width / 2), int(corridor_width / 2) + 1):
-				if current.x + j >= 0 and current.x + j < HEIGHT and current.y + i >= 0 and current.y + i < WIDTH:
+		for i in range(-int(CORRIDOR_WIDTH / 2), int(CORRIDOR_WIDTH / 2) + 1):
+			for j in range(-int(CORRIDOR_WIDTH / 2), int(CORRIDOR_WIDTH / 2) + 1):
+				if is_valid_pos(current.x + i, current.y + j):
 					grid[current.x + i][current.y + j] = 0
 	
 func is_valid_pos(x, y):

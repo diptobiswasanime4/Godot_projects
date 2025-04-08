@@ -129,7 +129,7 @@ tile_set = SubResource("TileSet_csyvp")
 [node name="Runa" parent="." instance=ExtResource("5_ccbhi")]
 
 [node name="Camera2D" type="Camera2D" parent="Runa"]
-zoom = Vector2(2, 2)
+zoom = Vector2(4, 4)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
