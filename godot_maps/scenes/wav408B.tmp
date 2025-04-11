@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp4y7em2ulksd"]
+
+[ext_resource type="Script" path="res://scripts/wave_collapse_corners.gd" id="1_rx1nk"]
+[ext_resource type="Texture2D" uid="uid://bftt0qsuyjm45" path="res://assets/puddle-0001.png" id="2_oy4vg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ijpnl"]
+texture = ExtResource("2_oy4vg")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_wgf3u"]
+sources/0 = SubResource("TileSetAtlasSource_ijpnl")
+
+[node name="wave_collapse_corners" type="Node2D"]
+script = ExtResource("1_rx1nk")
+map_width = null
+map_height = null
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_wgf3u")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TileMapLayer"]
+
+[node name="Button" type="Button" parent="TileMapLayer/CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Randomize"
+
+[connection signal="pressed" from="TileMapLayer/CanvasLayer/Button" to="." method="_on_button_pressed"]
